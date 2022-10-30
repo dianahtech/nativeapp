@@ -7,7 +7,7 @@ import setUserTokenIntoStorage from './asyncStorages/setUserTokenIntoStorage';
 
 //Deixar dinamico com ambientes, lembral do localhost/10.0.2.2
 const api = axios.create({
-  baseURL: 'http://10.0.2.2:3000',
+  baseURL: 'http://dianatech.herokuapp.com',
 });
 
 /* api.interceptors.request.use(request => {

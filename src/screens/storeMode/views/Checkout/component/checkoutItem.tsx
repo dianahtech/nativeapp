@@ -11,14 +11,8 @@ import {
 } from '../../../../../identity';
 import {formatCash} from '../../../../../services/transformers/formatCash';
 
-export const CheckoutItem: React.FC = ({
-  name,
-  durl,
-  value,
-  preco,
-  quantidade,
-}) => {
-  console.log(name, durl, value, preco, quantidade);
+export const CheckoutItem: React.FC = ({name, durl, value, preco, qty}) => {
+  console.log(name, durl, value, preco, qty);
   return (
     <View style={styles.containerItem}>
       <View style={styles.imagemContainer}>
@@ -29,8 +23,8 @@ export const CheckoutItem: React.FC = ({
         <Text style={styles.descTextoInferior}>{name}</Text>
       </View>
       <View style={styles.itemPrecoContainer}>
-        <Text style={styles.precoTexto}>{formatCash(preco * quantidade)}</Text>
-        <Text style={styles.precoTexto}>Qtd: {quantidade}</Text>
+        <Text style={styles.precoTexto}>{formatCash(preco * qty)}</Text>
+        <Text style={styles.precoTexto}>Qtd: {qty}</Text>
       </View>
     </View>
   );

@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import {DataContext} from '../../../../contexts/index';
+import {useStore} from '../../../../contexts/store.context';
 import {
   FONT_FAMILY_BOLD,
   FONT_FAMILY_SEMI_BOLD,
@@ -19,10 +19,10 @@ import {formatCash} from '../../../../services/transformers/formatCash';
 export const Checkout: React.FC = () => {
   const navigation = useNavigation();
 
-  const {itensCheckout} = React.useContext(DataContext);
+  const {itensCheckout} = useStore();
 
   const valorTotal = itensCheckout.reduce(
-    (acumulado, atual) => acumulado + atual.quantidade * atual.value,
+    (acumulado, atual) => acumulado + atual.qty * atual.value,
     0,
   );
 

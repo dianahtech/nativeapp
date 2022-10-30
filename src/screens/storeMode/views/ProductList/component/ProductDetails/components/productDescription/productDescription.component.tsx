@@ -1,9 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {useContext} from 'react';
 import {StyleSheet, View, Text, Image} from 'react-native';
 
-import {DataContext} from '../../../../../../../../contexts/index';
 import {
   BLACK,
   FONT_FAMILY_BOLD,
@@ -18,7 +16,7 @@ import {
 import Button from '../../../../../../../components/Button';
 import {formatCash} from '../../../../../../../../services/transformers/formatCash';
 import {Product} from '../../../../../../../../@types';
-import {getValueInCurrency} from '../../../../../../../../services/transformers/getValueInCurrency';
+import {useStore} from '../../../../../../../../contexts/store.context';
 
 export const ProductDescription: React.FC<Product> = ({
   name,
@@ -26,7 +24,7 @@ export const ProductDescription: React.FC<Product> = ({
   value,
   id,
 }) => {
-  const {adicionarItem} = useContext(DataContext);
+  const {addItem} = useStore();
   const navigation = useNavigation();
 
   let itevaluetype = 4.98;
@@ -58,7 +56,7 @@ export const ProductDescription: React.FC<Product> = ({
               text="COMPRAR"
               type="button"
               onPress={() => {
-                adicionarItem({
+                addItem({
                   id,
                   name,
                   durl,

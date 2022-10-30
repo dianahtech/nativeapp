@@ -1,24 +1,22 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useStore} from '../contexts/store.context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-////@ROUTES
+///@ROUTES
 import StoreRoutes from './stacks/storeStackNavigation';
 import AccountRoutes from './stacks/accountStackNavigation';
 import GameRoutes from './stacks/gameStackNavigation';
-
 import {OrdersScreen} from '../screens/orders/orders.screen';
 
-////@STYLES
+///@STYLES
 import {PRIMARY, PRIMARYDARKER, WHITE, WHITE_80} from '../identity';
-import {DataContext} from '../contexts';
 
 const Tab = createBottomTabNavigator();
 
 const Routes = () => {
-  const {itensCheckout} = React.useContext(DataContext);
-
+  const {itensCheckout} = useStore();
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -45,7 +43,7 @@ const Routes = () => {
           component={StoreRoutes}
           options={{
             tabBarBadge: itensCheckout.reduce(
-              (acumulado, atual) => acumulado + atual.quantidade,
+              (acumulado, atual) => acumulado + atual.qty,
               0,
             ),
             tabBarLabel: 'Loja',

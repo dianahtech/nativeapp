@@ -1,18 +1,18 @@
 import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {
-  BACKGROUND_COLOR,
-  BLACK_30,
-  PRIMARY,
-  PRIMARYDARKER,
-} from '../../../../identity';
+import {BACKGROUND_COLOR, PRIMARY} from '../../../../identity';
 import {Sacola} from '../bag/bag.component';
 
-import {StoreContext} from '../../../../contexts/store.context';
+import {useStore} from '../../../../contexts/store.context';
+import Dropdown from '../../../components/dropdownMenu/dropdown.component';
 
 const Header: React.FC = () => {
-  const {storeInfo, selectedCategorie, setSelectedCategorie} =
-    React.useContext(StoreContext);
+  const {
+    storeInfo,
+    selectedCategorie,
+    storeCategories,
+    filterInstaceOfAllItemsBySection,
+  } = useStore();
 
   return (
     <>
@@ -22,9 +22,12 @@ const Header: React.FC = () => {
       </View>
       <View>
         <View style={styles.separador} />
-        <View style={styles.containerTexto}>
+
+        {/*  <View style={styles.containerTexto}>
           <Text style={styles.textoDescricao}>{selectedCategorie}</Text>
-        </View>
+        </View> */}
+
+        <Dropdown label={selectedCategorie} data={storeCategories} />
       </View>
     </>
   );

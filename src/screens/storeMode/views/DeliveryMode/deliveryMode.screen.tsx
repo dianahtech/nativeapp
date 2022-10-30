@@ -3,7 +3,6 @@ import React, {useCallback} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 //import {useNavigation} from '@react-navigation/native';
 
-import Footer from '../../components/Footer';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {DeliveryModeStyle} from './styles';
 import {useNavigation} from '@react-navigation/native';
@@ -12,7 +11,6 @@ import {PRIMARYDARKER} from '../../../../identity';
 
 const DeliveryMode = () => {
   const navigation = useNavigation();
-
   const handleNavigateToPaymentMode = useCallback(async () => {
     return navigation.navigate('PaymentMode');
   }, []);

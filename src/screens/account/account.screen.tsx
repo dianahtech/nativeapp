@@ -71,9 +71,14 @@ export const AccountScreen = () => {
               style={styles.touchableOpacity}
               onPress={() => {
                 refreshCredentials({
-                  credential: {userId: '', tokenId: '', refreshToken: ''},
+                  credential: {
+                    userId: '',
+                    tokenId: '',
+                    refreshToken: '',
+                    oneSignalPLayerId: '',
+                  },
                 });
-                navigation.navigate('Account');
+                navigation.navigate('Account', {});
               }}>
               <Text style={styles.itemText}>{title}</Text>
               <Icon name="navigate-next" size={25} color={PRIMARY} />

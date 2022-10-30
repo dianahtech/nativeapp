@@ -6,14 +6,13 @@ import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import Button from '../../../components/Button';
 import {FinishOrderStyle} from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {DataContext} from '../../../../contexts';
 
 import {formatCash} from '../../../../services/transformers/formatCash';
 import api from '../../../../services/axios';
 import {useUser} from '../../../../contexts/user.context';
 const FinishPage: React.FC = () => {
   const navigation = useNavigation();
-  const {sendOrder} = useContext(DataContext);
+
   const {credentials} = useUser();
 
   const estimatedValue = 16;
@@ -27,7 +26,6 @@ const FinishPage: React.FC = () => {
         native_user_id: credentials.userId,
         stored_id: '1',
       });
-      sendOrder();
     } catch (error) {
     } finally {
       navigation.navigate('Orders');

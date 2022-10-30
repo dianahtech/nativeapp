@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Image, View} from 'react-native';
-import {DataContext} from '../../../../contexts/index';
+import {useStore} from '../../../../contexts/store.context';
 
 import {
   FONT_FAMILY_SEMI_BOLD,
@@ -12,7 +12,7 @@ import {
 
 export const Sacola: React.FC = () => {
   const navigation = useNavigation();
-  const {itensCheckout} = React.useContext(DataContext);
+  const {itensCheckout} = useStore();
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate('Checkout')}>
@@ -26,7 +26,7 @@ export const Sacola: React.FC = () => {
           <View style={styles.containerQuantidade}>
             <Text style={styles.textoQuantidade}>
               {itensCheckout.reduce(
-                (acumulado, atual) => acumulado + atual.quantidade,
+                (acumulado, atual) => acumulado + atual.qty,
                 0,
               )}
               {''}

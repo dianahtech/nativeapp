@@ -63,7 +63,7 @@ export const UserProvider = ({children}: UserProviderProps) => {
 export function useUser(): UserContextData {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error('useUser must be used within an CartProvider');
+    throw new Error('useUser must be used within an UserProvider');
   }
   return context;
 }
