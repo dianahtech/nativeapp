@@ -5,8 +5,11 @@ import {FONT_SIZE_X_LARGE} from '../../../../identity';
 import {Item} from '../../components/item/item.component';
 
 import SectionName from './Components/SectionName';
+import {useStore} from '../../../../contexts/store.context';
 
 export const ProductList = () => {
+  const {getItemsFromStore} = useStore();
+
   useEffect(() => {
     getItemsFromStore();
   }, []);
@@ -59,66 +62,14 @@ export const ProductList = () => {
     },
   ];
 
-  /*   const renderItem = useCallback(({item}) => {
-    return (
-      <View>
-        <Text>{item.title}</Text>
-      </View>
-    );
-  }, []); */
-
-  /*   const handleSectionPress = useCallback(({item}) => {}, []);
-
-  const renderSectionList = useMemo(() => {
-    return (
-      <SectionList
-        stickySectionHeadersEnabled
-        extraData={DATA}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        keyboardDismissMode="on-drag"
-        keyboardShouldPersistTaps="always"
-        sections={DATA}
-        keyExtractor={section => section.id}
-        keyExtractor={section => section.title}
-        renderItem={renderItem}
-        renderSectionHeader={({section}) => (
-          <SectionName
-            section={{
-              name: section.title.toUpperCase(),
-               id: section.id,
-              loaded: section.loaded,
-              exhibitionMode: section.exhibitionMode as ExhibitionMode,
-              isHided: section.isHided,
-              color: section.color,
-            }}
-            onPress={handleSectionPress}
-          />
-        )}
-      />
-    );
-  }, []);
- */
-
-  /*   const renderItem = useCallback(({name}) => {
-    console.log(`Este é o valor do title:${name}`);
-    return (
-      <View style={styles.item}>
-        <Text style={styles.title}>{name || 'Ta sem titulo'}</Text>
-      </View>
-    );
-
-  }, []); */
-
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
         sections={sections}
         keyExtractor={item => item.id}
-        /* renderItem={renderItem} */
+      
         renderItem={({item}) => <Item {...item} />}
         renderSectionHeader={({section}) => (
-          /*  <Text style={styles.header}>{section.name}</Text> */
           <SectionName
             section={{
               name: section.name,
@@ -126,7 +77,7 @@ export const ProductList = () => {
               loaded: true,
               isHided: false,
             }}
-            /* onPress={handleSectionPress} */
+         
           />
         )}
       />
