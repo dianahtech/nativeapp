@@ -17,9 +17,9 @@ export const FACEBOOK_COLOR = '#3b5998';
 
 // TIPOGRAFIA
 export const FONT_FAMILY_LIGHT = 'OpenSans-Light';
-export const FONT_FAMILY_REGULAR = 'OpenSans-Regular';
-export const FONT_FAMILY_SEMI_BOLD = 'OpenSans-SemiBold';
-export const FONT_FAMILY_BOLD = 'OpenSans-Bold';
+export const FONT_FAMILY_REGULAR = 'Roboto-Regular';
+export const FONT_FAMILY_SEMI_BOLD = 'Roboto-medium';
+export const FONT_FAMILY_BOLD = 'Roboto-Bold';
 export const FONT_FAMILY_EXTRA_BOLD = 'OpenSans-ExtraBold';
 
 // MEDIDAS

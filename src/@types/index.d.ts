@@ -4,4 +4,5 @@ export type Product = {
   itemDesc?: string;
   value: integer;
   id: any;
+  section?: string;
 };
