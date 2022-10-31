@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Text, View, StyleSheet, ScrollView, FlatList} from 'react-native';
 import {useUser} from '../../contexts/user.context';
+import {FONT_SIZE_LARGE} from '../../identity';
 import api from '../../services/axios';
 import OrderCard from './components/orderCard.component';
 
@@ -78,7 +79,7 @@ export const OrdersScreen = () => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20,
+    fontSize: FONT_SIZE_LARGE,
     fontWeight: 'bold',
   },
   noUserView: {

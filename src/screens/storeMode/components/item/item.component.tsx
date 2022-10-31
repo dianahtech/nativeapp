@@ -2,7 +2,11 @@ import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {TouchableOpacity, Image, StyleSheet, Text} from 'react-native';
 import {Product} from '../../../../@types';
-import {WHITE} from '../../../../identity';
+import {
+  FONT_FAMILY_SEMI_BOLD,
+  FONT_SIZE_MEDIUM,
+  WHITE,
+} from '../../../../identity';
 import {formatCash} from '../../../../services/transformers/formatCash';
 
 export const Item: React.FC<Product> = ({name, durl, value, id}) => {
@@ -42,8 +46,8 @@ const styles = StyleSheet.create({
   },
   texto: {
     marginTop: 8,
-    fontFamily: 'OpenSans-Semibold',
-    fontSize: 14,
+    fontFamily: FONT_FAMILY_SEMI_BOLD,
+    fontSize: FONT_SIZE_MEDIUM,
     color: '#848486',
   },
   imagem: {width: 50, height: 50},

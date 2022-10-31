@@ -1,6 +1,8 @@
 import {Text, View} from 'react-native';
 import {
   BLACK,
+  FONT_FAMILY_REGULAR,
+  FONT_SIZE_X_SMALL,
   PRIMARYDARKER,
   WHITE,
   WHITE_30,
@@ -81,8 +83,8 @@ const orderCardStyle = StyleSheet.create({
   },
   cardCodeText: {
     color: WHITE_80,
-    fontFamily: 'Roboto-Regular',
-    fontSize: 10,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_X_SMALL,
     textAlign: 'center',
     padding: 16,
   },

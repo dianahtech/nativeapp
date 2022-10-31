@@ -1,7 +1,15 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {PRIMARY, WHITE, BLACK_50} from '../../../identity';
+import {
+  PRIMARY,
+  WHITE,
+  BLACK_50,
+  FONT_FAMILY_REGULAR,
+  FONT_FAMILY_BOLD,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
+} from '../../../identity';
 
 interface ButtonProps {
   type:
@@ -55,36 +63,35 @@ const Button: React.FC<ButtonProps> = ({type, text, onPress, disabled}) => {
 
   ////@TEXTS STYLES
   const buttonText = {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: WHITE,
   };
   const buttonTextOutline = {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: PRIMARY,
   };
   const buttonTextOutlineGray = {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: BLACK_50,
   };
   const buttonTextClear = {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: WHITE,
   };
   const buttonTextClearGray = {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: WHITE,
   };
   const FBtext = {
-    fontSize: 14,
+    fontSize: FONT_SIZE_SMALL,
     color: WHITE,
     marginLeft: 14,
-    fontFamily: 'Roboto-Regular',
-    fontWeight: 'bold',
+    fontFamily: FONT_FAMILY_BOLD,
   };
 
   switch (type) {

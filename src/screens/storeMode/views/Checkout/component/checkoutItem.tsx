@@ -7,6 +7,8 @@ import {
   FONT_FAMILY_SEMI_BOLD,
   FONT_SIZE_MEDIUM,
   FONT_SIZE_SMALL,
+  FONT_SIZE_X_SMALL,
+  PRIMARYDARKER,
   WHITE,
 } from '../../../../../identity';
 import {formatCash} from '../../../../../services/transformers/formatCash';
@@ -33,13 +35,16 @@ export const CheckoutItem: React.FC = ({name, durl, value, preco, qty}) => {
 const styles = StyleSheet.create({
   containerItem: {
     backgroundColor: WHITE,
+    shadowColor: PRIMARYDARKER,
+    shadowRadius: 10,
+    elevation: 10,
     borderRadius: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 4,
   },
   imagemContainer: {
-    flex: 20,
+    flex: 2,
     backgroundColor: 'transparent',
     padding: 18,
     justifyContent: 'center',
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   descContainer: {
-    flex: 25,
+    flex: 6,
     padding: 18,
     justifyContent: 'center',
   },
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE_SMALL,
   },
   itemPrecoContainer: {
-    flex: 35,
+    flex: 3,
     padding: 18,
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
   textoQuantidade: {
     textAlign: 'center',
     padding: 4,
-    fontSize: 10,
+    fontSize: FONT_SIZE_X_SMALL,
     fontFamily: FONT_FAMILY_SEMI_BOLD,
     color: WHITE,
   },

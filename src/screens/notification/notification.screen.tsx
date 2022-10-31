@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import {FONT_SIZE_X_LARGE} from '../../identity';
 
 export const NotificationScreen = () => {
   return (
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 25,
+    fontSize: FONT_SIZE_X_LARGE,
     fontWeight: 'bold',
   },
 });

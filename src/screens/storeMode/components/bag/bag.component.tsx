@@ -6,6 +6,7 @@ import {useStore} from '../../../../contexts/store.context';
 
 import {
   FONT_FAMILY_SEMI_BOLD,
+  FONT_SIZE_X_SMALL,
   PRIMARYDARKER,
   WHITE,
 } from '../../../../identity';
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   textoQuantidade: {
     textAlign: 'center',
     padding: 4,
-    fontSize: 10,
+    fontSize: FONT_SIZE_X_SMALL,
     fontFamily: FONT_FAMILY_SEMI_BOLD,
     color: WHITE,
   },

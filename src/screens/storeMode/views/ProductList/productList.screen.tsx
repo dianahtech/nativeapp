@@ -4,6 +4,7 @@ import {View, FlatList, StyleSheet} from 'react-native';
 import Header from '../../components/header/header.component';
 import {Item} from '../../components/item/item.component';
 import {useStore} from '../../../../contexts/store.context';
+import {FONT_SIZE_X_LARGE} from '../../../../identity';
 
 export const ProductList = () => {
   const {istanceOfAllItems, getItemsFromStore} = useStore();
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 25,
+    fontSize: FONT_SIZE_X_LARGE,
     fontWeight: 'bold',
   },
 });

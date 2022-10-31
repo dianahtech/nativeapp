@@ -6,6 +6,11 @@ import {
   BLACK_50,
   WHITE_50,
   WHITE,
+  FONT_FAMILY_REGULAR,
+  FONT_FAMILY_SEMI_BOLD,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_SMALL,
 } from '../../../../identity';
 
 export const DeliveryModeStyle = StyleSheet.create({
@@ -16,11 +21,11 @@ export const DeliveryModeStyle = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   sectionTitle: {
-    fontSize: 16,
+    fontSize: FONT_SIZE_MEDIUM,
     marginBottom: 20,
     marginTop: 20,
     color: BLACK_30,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: FONT_FAMILY_REGULAR,
   },
   sectionCard: {
     flexDirection: 'row',
@@ -37,13 +42,13 @@ export const DeliveryModeStyle = StyleSheet.create({
     /*  opacity: ${(props) => (props.unavailable ? 0.5 : 1)}; */
   },
   selectionTitle: {
-    fontSize: 18,
+    fontSize: FONT_SIZE_LARGE,
     color: BLACK_30,
-    fontFamily: 'Roboto-Medium',
+    fontFamily: FONT_FAMILY_SEMI_BOLD,
   },
   selectionSubtitle: {
-    fontSize: 14,
+    fontSize: FONT_SIZE_SMALL,
     color: WHITE_30,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: FONT_FAMILY_REGULAR,
   },
 });

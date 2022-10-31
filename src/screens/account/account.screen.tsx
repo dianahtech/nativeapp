@@ -2,7 +2,15 @@ import React, {useCallback, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {BLACK_50, PRIMARY, PRIMARYDARKER} from '../../identity';
+import {
+  BLACK_50,
+  FONT_FAMILY_REGULAR,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
+  FONT_SIZE_X_SMALL,
+  PRIMARY,
+  PRIMARYDARKER,
+} from '../../identity';
 import {useUser} from '../../contexts/user.context';
 
 export const AccountScreen = () => {
@@ -140,8 +148,8 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   title: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     fontWeight: '700',
     color: PRIMARYDARKER,
   },
@@ -160,8 +168,8 @@ const styles = StyleSheet.create({
   },
   itemText: {
     flex: 1,
-    fontFamily: 'Roboto-Regular',
-    fontSize: 14,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_SMALL,
     color: BLACK_50,
   },
 });

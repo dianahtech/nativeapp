@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {BLACK_50, WHITE} from '../../identity';
+import {BLACK_50, FONT_SIZE_SMALL, WHITE} from '../../identity';
 
 export const LoginStyle = StyleSheet.create({
   content: {
@@ -37,7 +37,7 @@ export const LoginStyle = StyleSheet.create({
   textInput: {
     width: 250,
     color: BLACK_50,
-    fontSize: 14,
+    fontSize: FONT_SIZE_SMALL,
     lineHeight: 20,
     height: 40,
     marginLeft: 15,

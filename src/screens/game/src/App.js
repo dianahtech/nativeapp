@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import entities from './entities';
 import Physics from './physics';
 import {windowHeight, windowWidth} from './utils/random';
+import {FONT_SIZE_LARGE, FONT_SIZE_XX_LARGE} from '../../../identity';
 
 export default function Appy() {
   const backgroundGame = require('./assets/images/background.png');
@@ -90,13 +91,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    fontSize: 20,
+    fontSize: FONT_SIZE_LARGE,
     fontWeight: 'bold',
     padding: 20,
   },
   currentPoints: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: FONT_SIZE_LARGE,
     fontWeight: 'bold',
     margin: 20,
   },
@@ -122,11 +123,11 @@ const styles = StyleSheet.create({
   startStyle: {
     fontWeight: 'bold',
     color: 'white',
-    fontSize: 30,
+    fontSize: FONT_SIZE_XX_LARGE,
   },
   leave: {
     fontWeight: 'bold',
     color: 'red',
-    fontSize: 20,
+    fontSize: FONT_SIZE_LARGE,
   },
 });

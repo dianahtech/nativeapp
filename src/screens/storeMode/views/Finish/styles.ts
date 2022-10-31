@@ -4,6 +4,11 @@ import {
   BACKGROUND_COLOR,
   BLACK,
   ERROR_COLOR,
+  FONT_FAMILY_BOLD,
+  FONT_FAMILY_REGULAR,
+  FONT_SIZE_LARGE,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_SMALL,
   PRIMARY,
   WHITE_30,
   WHITE_80,
@@ -24,8 +29,8 @@ export const FinishOrderStyle = StyleSheet.create({
   titleText: {
     position: 'absolute',
     fontStyle: 'normal',
-    fontFamily: 'Roboto-Regular',
-    fontSize: 20,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_LARGE,
     color: WHITE_80,
   },
   buttonClose: {
@@ -36,33 +41,33 @@ export const FinishOrderStyle = StyleSheet.create({
   },
   subtitleText: {
     fontStyle: 'normal',
-    fontFamily: 'Roboto-Bold',
-    fontSize: 20,
+    fontFamily: FONT_FAMILY_BOLD,
+    fontSize: FONT_SIZE_LARGE,
     color: BLACK,
   },
   sectionContainer: {marginBottom: 30},
   innformationContainerText: {
     fontStyle: 'normal',
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: WHITE_80,
   },
   estimatedValueText: {
     fontStyle: 'normal',
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: WHITE_30,
   },
   totalBuyText: {
     /*   font-style: normal; */
-    fontFamily: 'Roboto-Bold',
-    fontSize: 20,
+    fontFamily: FONT_FAMILY_BOLD,
+    fontSize: FONT_SIZE_LARGE,
     color: PRIMARY,
   },
   serviceChargeText: {
     /* font-style: normal; */
-    fontFamily: 'Roboto-Regular',
-    fontSize: 16,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_MEDIUM,
     color: WHITE_30,
   },
   sectionTitleContainer: {
@@ -80,8 +85,8 @@ export const FinishOrderStyle = StyleSheet.create({
   spanContainer: {width: 150},
   spanTermText: {
     fontStyle: 'normal',
-    fontFamily: 'Roboto-Regular',
-    fontSize: 12,
+    fontFamily: FONT_FAMILY_REGULAR,
+    fontSize: FONT_SIZE_SMALL,
     textAlign: 'justify',
     color: BLACK,
   },

@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import {FONT_SIZE_XX_LARGE} from '../../identity';
 import Button from '../components/Button';
 
 export const GameScreen = () => {
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 25,
+    fontSize: FONT_SIZE_XX_LARGE,
     fontWeight: 'bold',
   },
 });

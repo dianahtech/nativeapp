@@ -26,33 +26,24 @@ export const Checkout: React.FC = () => {
     0,
   );
 
-  const Titulo = ({children}) => (
-    <Text style={styles.titulo}> {children} </Text>
-  );
-  const Total = ({children}) => <Text style={styles.total}>{children}</Text>;
-
   console.log(itensCheckout);
 
   return (
     <View style={styles.container}>
-      <Titulo>Checkout</Titulo>
-
+      <Text style={styles.title}>Checkout</Text>
       {itensCheckout.map(item => (
         <CheckoutItem key={item.id} {...item} />
       ))}
-
       <Text style={styles.total}> Total: {formatCash(valorTotal)} </Text>
-
       <Button
         type="button-block"
         text={'Finalizar Compra'}
-        onPress={() => navigation.navigate('DeliveryMode')}
+        onPress={() => navigation.navigate('DeliveryMode', {})}
       />
-
       <Button
         type="outline-gray"
         text={'Continuar comprando'}
-        onPress={() => navigation.navigate('ProductList')}
+        onPress={() => navigation.navigate('ProductList', {})}
       />
     </View>
   );
@@ -61,24 +52,17 @@ export const Checkout: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    flex: 1,
-    margin: 24,
+    margin: 15,
   },
-  titulo: {
+  title: {
     fontFamily: FONT_FAMILY_SEMI_BOLD,
     fontSize: FONT_SIZE_XX_LARGE,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   total: {
+    margin: 10,
     padding: 10,
     fontSize: FONT_SIZE_LARGE,
     fontFamily: FONT_FAMILY_SEMI_BOLD,
-  },
-  continuarTexto: {
-    fontFamily: FONT_FAMILY_BOLD,
-    fontSize: FONT_SIZE_SMALL,
-    color: LIGHTBLUE,
-    marginTop: 20,
-    textAlign: 'center',
   },
 });

@@ -1,6 +1,13 @@
 import * as React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {BACKGROUND_COLOR, PRIMARY} from '../../../../identity';
+import {
+  BACKGROUND_COLOR,
+  FONT_FAMILY_BOLD,
+  FONT_FAMILY_REGULAR,
+  FONT_SIZE_MEDIUM,
+  FONT_SIZE_XX_LARGE,
+  PRIMARY,
+} from '../../../../identity';
 import {Sacola} from '../bag/bag.component';
 
 import {useStore} from '../../../../contexts/store.context';
@@ -43,8 +50,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   titulo: {
-    fontFamily: 'Opensans-Bold',
-    fontSize: 28,
+    fontFamily: FONT_FAMILY_BOLD,
+    fontSize: FONT_SIZE_XX_LARGE,
   },
   separador: {
     borderWidth: 0.5,
@@ -61,8 +68,8 @@ const styles = StyleSheet.create({
     borderColor: PRIMARY,
     padding: 15,
     backgroundColor: BACKGROUND_COLOR,
-    fontSize: 16,
-    fontFamily: 'OpenSans-Regular',
+    fontSize: FONT_SIZE_MEDIUM,
+    fontFamily: FONT_FAMILY_REGULAR,
     color: '#A1A5AA',
   },
 });
