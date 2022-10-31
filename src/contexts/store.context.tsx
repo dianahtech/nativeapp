@@ -18,7 +18,7 @@ interface StoreContextData {
   istanceOfAllItems: Product[];
   getItemsFromStore: () => void;
   filterInstaceOfAllItemsBySection: () => void;
-  addItem: () => void;
+  addItem: (data: Product) => void;
 }
 
 interface StoreInfoType {
@@ -86,7 +86,7 @@ export const StoreProvider = ({children}: StoreProviderProps) => {
     [],
   );
 
-  const addItem = useCallback(async newItem => {
+  const addItem = useCallback(async (newItem: Product) => {
     try {
       let itensCheckoutCopy = [...itensCheckout];
       let alreadyExists = itensCheckoutCopy.find(

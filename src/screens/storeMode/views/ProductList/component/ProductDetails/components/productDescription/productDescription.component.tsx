@@ -26,6 +26,7 @@ export const ProductDescription: React.FC<Product> = ({
 }) => {
   const {addItem} = useStore();
   const navigation = useNavigation();
+  let newItem: Product = {};
 
   let itevaluetype = 4.98;
 
@@ -56,12 +57,14 @@ export const ProductDescription: React.FC<Product> = ({
               text="COMPRAR"
               type="button"
               onPress={() => {
-                addItem({
+                newItem = {
                   id,
                   name,
                   durl,
                   value,
-                });
+                };
+
+                addItem(newItem);
                 navigation.navigate('Checkout');
               }}
             />
