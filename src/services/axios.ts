@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Alert} from 'react-native';
+import { Alert } from 'react-native';
 //import AsyncStorage from '@react-native-community/async-storage';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,7 +7,9 @@ import setUserTokenIntoStorage from './asyncStorages/setUserTokenIntoStorage';
 
 //Deixar dinamico com ambientes, lembral do localhost/10.0.2.2
 const api = axios.create({
-  baseURL: 'http://dianatech.herokuapp.com',
+  /* baseURL: 'http://dianatech.herokuapp.com', */
+  baseURL: 'http://10.0.2.2:3000',
+
 });
 
 /* api.interceptors.request.use(request => {

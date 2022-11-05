@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   return (
     <>
       <View style={styles.containerTitulo}>
-        <Text style={styles.titulo}>{storeInfo.storeName}</Text>
+        <Text style={styles.titulo}>{storeInfo.fantasyName}</Text>
         <Sacola />
       </View>
       <View>

@@ -29,7 +29,7 @@ export const Item: React.FC<Product> = ({name, durl, value, id}) => {
         source={{uri: `${durl}`}}
       />
       <Text style={styles.texto}>{name}</Text>
-      <Text style={styles.texto}>{formatCash(value)}</Text>
+      <Text style={styles.texto}>{formatCash(value*1)}</Text>
     </TouchableOpacity>
   );
 };

@@ -1,30 +1,39 @@
-import React, {useCallback, useContext} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useCallback, useContext, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import Button from '../../../components/Button';
-import {FinishOrderStyle} from './styles';
+import { FinishOrderStyle } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {formatCash} from '../../../../services/transformers/formatCash';
+import { formatCash } from '../../../../services/transformers/formatCash';
 import api from '../../../../services/axios';
-import {useUser} from '../../../../contexts/user.context';
+import { useUser } from '../../../../contexts/user.context';
+import { useStore } from '../../../../contexts/store.context';
+import { Product } from '../../../../@types';
+import { convertItemsToApp } from '../../../../services/transformers/transfitems';
+
+
 const FinishPage: React.FC = () => {
   const navigation = useNavigation();
 
-  const {credentials} = useUser();
+  const { credentials } = useUser();
+  const { itensCheckout, storeInfo } = useStore();
+
 
   const estimatedValue = 16;
 
-  const sendFinalOrder = useCallback(() => {
+
+  const sendFinalOrder = useCallback(async () => {
     try {
-      api.post('/ordered_item/', {
+      const convertedItem = await convertItemsToApp(itensCheckout)
+      api.post('ordered_item', {
         final_value: '00,00',
-        date: '00/00/00000',
-        status: 'Enviado pelo app',
-        native_user_id: credentials.userId,
-        stored_id: '1',
+        status: 'Enviado',
+        native_user_id: 1,
+        stored_id: 1,
+        items: convertedItem
       });
     } catch (error) {
     } finally {
@@ -43,8 +52,8 @@ const FinishPage: React.FC = () => {
         0
       )
   );
-
-
+  
+  
   const estimatedValue = estimatedCartPrice(cart);
   */
   /*
@@ -89,7 +98,7 @@ const FinishPage: React.FC = () => {
     }
     return null;
   }, [cart.information.delivery, cart.information.payment, store.config]);
-
+  
   const renderServiceCharge = useMemo(() => {
     if (cart.information.delivery && store.config.deliveryInfo?.pglvFee) {
       return (
@@ -131,14 +140,14 @@ const FinishPage: React.FC = () => {
     }
     return null;
   }, [cart.information.delivery, store.config]);
-
+  
   const renderDeliveryMode = useMemo(() => {
      if (cart.information.delivery) {
       return <SubtitleText>Entrega</SubtitleText>;
     }
     return <SubtitleText>Retirada</SubtitleText>;
   }, [cart.information.delivery]);
-
+  
   const renderDeliveryModeOptions = useMemo(() => {
     if (cart.information.delivery && cart.information.address) {
       return (
@@ -190,7 +199,7 @@ const FinishPage: React.FC = () => {
     store.fantasyName,
     store.id,
   ]);
-
+  
   const renderPaymentMode = useMemo(() => {
     if (
       cart.information.payment?.card &&
@@ -251,7 +260,7 @@ const FinishPage: React.FC = () => {
       </>
     );
   }, [cart.card, cart.information.payment]);
-
+  
   const renderFinishButton = useMemo(() => {
     if (loading) {
       return <ActivityIndicator />;

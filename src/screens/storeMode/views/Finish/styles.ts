@@ -45,7 +45,7 @@ export const FinishOrderStyle = StyleSheet.create({
     fontSize: FONT_SIZE_LARGE,
     color: BLACK,
   },
-  sectionContainer: {marginBottom: 30},
+  sectionContainer: {padding: 8,marginBottom: 30},
   innformationContainerText: {
     fontStyle: 'normal',
     fontFamily: FONT_FAMILY_REGULAR,

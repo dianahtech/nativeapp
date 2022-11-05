@@ -1,35 +1,32 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import {useStore} from '../../../../contexts/store.context';
+import { useStore } from '../../../../contexts/store.context';
 import {
-  FONT_FAMILY_BOLD,
   FONT_FAMILY_SEMI_BOLD,
   FONT_SIZE_LARGE,
-  FONT_SIZE_SMALL,
   FONT_SIZE_XX_LARGE,
-  LIGHTBLUE,
 } from '../../../../identity';
 
-import {CheckoutItem} from './component/checkoutItem';
+import { CheckoutItem } from './component/checkoutItem';
 import Button from '../../../components/Button';
-import {formatCash} from '../../../../services/transformers/formatCash';
+import { formatCash } from '../../../../services/transformers/formatCash';
 
 export const Checkout: React.FC = () => {
   const navigation = useNavigation();
 
-  const {itensCheckout} = useStore();
+  const { itensCheckout } = useStore();
 
   const valorTotal = itensCheckout.reduce(
     (acumulado, atual) => acumulado + atual.qty * atual.value,
     0,
   );
 
-  console.log(typeof itensCheckout[0].value);
+  console.log(typeof itensCheckout[0]?.value);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Checkout</Text>
       {itensCheckout.map(item => (
         <CheckoutItem key={item.id} {...item} />
@@ -45,13 +42,13 @@ export const Checkout: React.FC = () => {
         text={'Continuar comprando'}
         onPress={() => navigation.navigate('ProductList', {})}
       />
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    /* alignItems: 'center', */
     margin: 15,
   },
   title: {
