@@ -25,7 +25,7 @@ export const CheckoutItem: React.FC = ({name, durl, value, preco, qty}) => {
         <Text style={styles.descTextoInferior}>{name}</Text>
       </View>
       <View style={styles.itemPrecoContainer}>
-        <Text style={styles.precoTexto}>{formatCash(preco * qty)}</Text>
+        <Text style={styles.precoTexto}>{formatCash(value * qty)}</Text>
         <Text style={styles.precoTexto}>Qtd: {qty}</Text>
       </View>
     </View>

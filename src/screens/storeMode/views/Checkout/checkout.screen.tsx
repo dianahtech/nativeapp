@@ -26,7 +26,7 @@ export const Checkout: React.FC = () => {
     0,
   );
 
-  console.log(itensCheckout);
+  console.log(typeof itensCheckout[0].value);
 
   return (
     <View style={styles.container}>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, SectionList, SafeAreaView} from 'react-native';
 
 import {FONT_SIZE_X_LARGE} from '../../../../identity';
@@ -7,23 +7,21 @@ import {Item} from '../../components/item/item.component';
 import SectionName from './Components/SectionName';
 import {useStore} from '../../../../contexts/store.context';
 
-export const ProductList = () => {
-  const {getItemsFromStore} = useStore();
-
-  useEffect(() => {
-    getItemsFromStore();
-  }, []);
-
-  const sections: {
+export const ProductLists = () => {
+  const {getItemsFromStore, itemsBySection} = useStore();
+  const [sections, setSections]: {
     name: string;
     id: string;
-    data: readonly {
+    data: {
       name: string;
-      id: string;
-      value: number;
       durl: string;
+      itemDesc?: string;
+      value: number;
+      id: any;
+      section?: string;
+      qty: number;
     }[];
-  }[] = [
+  }[] =useState([
     {
       id: '0000',
       name: 'Main dishes',
@@ -60,12 +58,19 @@ export const ProductList = () => {
         },
       ],
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    const items =  getItemsFromStore()
+
+    setSections
+  }, []);
+
 
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
-        sections={sections}
+        sections={itemsBySection}
         keyExtractor={item => item.id}
       
         renderItem={({item}) => <Item {...item} />}

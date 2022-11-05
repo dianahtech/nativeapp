@@ -7,16 +7,15 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 ///@ROUTES
 import StoreRoutes from './stacks/storeStackNavigation';
 import AccountRoutes from './stacks/accountStackNavigation';
-import GameRoutes from './stacks/gameStackNavigation';
-import {OrdersScreen} from '../screens/orders/orders.screen';
 
 ///@STYLES
 import {PRIMARY, PRIMARYDARKER, WHITE, WHITE_80} from '../identity';
+import { ProductLists } from '../screens/storeMode/views/sectionList/sectionList.screen';
 
 const Tab = createBottomTabNavigator();
 
 const Routes = () => {
-  const {itensCheckout} = useStore();
+  const {itensCheckout}=useStore();
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -35,17 +34,17 @@ const Routes = () => {
             height: 60,
             justifyContent: 'space-around',
             elevation: 5,
-            borderRadius: 60,
+            borderRadius: 5,
           },
         }}>
         <Tab.Screen
           name="Store"
           component={StoreRoutes}
           options={{
-            tabBarBadge: itensCheckout.reduce(
+            tabBarBadge:itensCheckout.length > 0? itensCheckout.reduce(
               (acumulado, atual) => acumulado + atual.qty,
               0,
-            ),
+            ) : 0,
             tabBarLabel: 'Loja',
             tabBarAccessibilityLabel: 'Loja',
             tabBarIcon: ({color}) => (
@@ -55,24 +54,14 @@ const Routes = () => {
         />
         <Tab.Screen
           name="Orders"
-          component={OrdersScreen}
+          component={ProductLists}
           options={{
             tabBarLabel: 'Orders',
             tabBarIcon: ({color}) => (
               <Icon name="source" color={color} size={40} />
             ),
           }}
-        />
-        <Tab.Screen
-          name="GameScreenTab"
-          component={GameRoutes}
-          options={{
-            tabBarLabel: 'Game',
-            tabBarIcon: ({color}) => (
-              <Icon name="videogame-asset" color={color} size={40} />
-            ),
-          }}
-        />
+        />        
         <Tab.Screen
           name="AccountTab"
           component={AccountRoutes}

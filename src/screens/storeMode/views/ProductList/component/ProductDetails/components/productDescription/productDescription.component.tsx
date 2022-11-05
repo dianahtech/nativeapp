@@ -36,8 +36,8 @@ export const ProductDescription: React.FC<Product> = ({
         <View style={styles.item}>
           <View style={styles.textoPosicao}>
             <View>
-              <Text style={styles.textoSuperior}>{name}</Text>
-              <Text style={styles.textoMedio}>{name}</Text>
+              {/* <Text style={styles.textoSuperior}>{name}</Text> */}
+            <Text style={styles.textoMedio}>{name}</Text> 
               <Text style={styles.textoInferior}>{name}</Text>
             </View>
             <Image
@@ -47,12 +47,11 @@ export const ProductDescription: React.FC<Product> = ({
             />
           </View>
           <Text style={styles.itemDescricao}>
-            Descricao do item neste campo
+            Descricao do item neste campo, como tempeiros, pesos, quantidades, etc.
           </Text>
 
-          <View style={styles.rodape}>
-            <Text style={styles.moeda}>{formatCash(itevaluetype)}</Text>
-            <Text style={styles.moeda}>{formatCash(value)}</Text>
+          <View style={styles.rodape}>            
+            <Text style={styles.moeda}>{formatCash(value*1)}</Text>
             <Button
               text="COMPRAR"
               type="button"

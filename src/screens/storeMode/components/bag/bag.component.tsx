@@ -29,8 +29,7 @@ export const Sacola: React.FC = () => {
               {itensCheckout.reduce(
                 (acumulado, atual) => acumulado + atual.qty,
                 0,
-              )}
-              {''}
+              )}             
             </Text>
           </View>
         ) : null}

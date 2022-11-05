@@ -3,13 +3,13 @@ import React, {
   ReactNode,
   useContext,
   useState,
-  useCallback,
-  useEffect,
+  useCallback, 
 } from 'react';
 import {Product} from '../@types';
 import api from '../services/axios';
 
 interface StoreContextData {
+  itemsBySection:any;
   storeInfo: StoreInfoType;
   selectedCategorie: string;
   storeCategories: string[];
@@ -17,13 +17,23 @@ interface StoreContextData {
   allItemsFromStore: Product[];
   istanceOfAllItems: Product[];
   getItemsFromStore: () => void;
-  filterInstaceOfAllItemsBySection: () => void;
+  filterInstanceOfAllItemsBySection: (data: FilterItemsBySectionDTO) => void;
   addItem: (data: Product) => void;
 }
+
+interface FilterItemsBySectionDTO {
+  selectedSection: string;
+}
+
 
 interface StoreInfoType {
   storeName: string;
 }
+
+interface ItensCheckoutType extends Product {
+  qty: number;
+}
+
 
 interface StoreProviderProps {
   children: ReactNode;
@@ -38,22 +48,25 @@ export const StoreProvider = ({children}: StoreProviderProps) => {
 
   const [selectedCategorie, setSelectedCategorie] = useState('Categorias');
   const [storeCategories, setStoreCategories] = useState([]);
-  const [itensCheckout, setItensCheckout] = useState([]);
-  const [allItemsFromStore, setAllItemsFromStore] = useState([]);
-  const [istanceOfAllItems, setIstanceOfAllItems] = useState([]);
+  const [itensCheckout, setItensCheckout] = useState<ItensCheckoutType[]>([]);
+  const [allItemsFromStore, setAllItemsFromStore] = useState<Product[]>([]);
+  const [istanceOfAllItems, setIstanceOfAllItems] = useState<Product[]>([]);
+  const [itemsBySection, setItemsBySection] = useState([]);
 
   const getItemsFromStore = useCallback(async () => {
-    console.log('Requisitando API do context.');
+    console.log('Requisitando API do context.');   
+    console.log(`Valor do itenscheckout${JSON.stringify(itensCheckout)}`);   
     try {
       api
-        .get('/items/1')
+        .get('/api/items/1')
         .then(response => {
           const itemsLists = response.data.data;
           if (itemsLists) {
             setAllItemsFromStore(itemsLists);
             setIstanceOfAllItems(itemsLists);
-            const sections = [...new Set(itemsLists.map(item => item.section))];
+            const sections =  [...new Set(itemsLists.map(item => item.section))];
             if (sections) {
+              console.log(`Este é o valor do sections:${sections}`)
               setStoreCategories(sections);
             }
           } else {
@@ -65,13 +78,40 @@ export const StoreProvider = ({children}: StoreProviderProps) => {
         });
     } catch (error) {
       console.log('Erro ao logar todos itens da loja.');
-    }
+    }finally{
+      console.log(`Entrou no finally`)
+      if(storeCategories && allItemsFromStore){
+        console.log(`Este é o valor do STORE CATEGORIES:${storeCategories}`)    
 
+        const itemsOrdenedBysection: Array<{    
+          name?: string;
+          id?: string;
+          data?: readonly {
+            name?: string;
+            id?: string;
+            value?: number;
+            durl?: string;
+          }[];
+        }> = [];   
+
+        storeCategories.map(async (section)=>{   
+          const existItemsForSection = allItemsFromStore.filter((item) => item.section === section)            
+          if (existItemsForSection){
+            itemsOrdenedBysection.push({
+              name:section,
+              id:`${section}1`,
+              data:allItemsFromStore
+            })
+          }
+        })
+        setItemsBySection(itemsOrdenedBysection)
+      }
+    }
     return;
   }, []);
 
-  const filterInstaceOfAllItemsBySection = useCallback(
-    async selectedSection => {
+  const filterInstanceOfAllItemsBySection = useCallback(
+    async ({selectedSection}:FilterItemsBySectionDTO) => {
       try {
         const result = allItemsFromStore.filter(
           item => item.section === selectedSection,
@@ -87,18 +127,20 @@ export const StoreProvider = ({children}: StoreProviderProps) => {
   );
 
   const addItem = useCallback(async (newItem: Product) => {
-    try {
-      let itensCheckoutCopy = [...itensCheckout];
+    try {   
+      let itensCheckoutCopy = itensCheckout      
       let alreadyExists = itensCheckoutCopy.find(
         itensCheckout => itensCheckout.id === newItem.id,
       );
-      if (alreadyExists) {
+      if (alreadyExists) {        
         alreadyExists.qty = alreadyExists.qty + 1;
+        itensCheckoutCopy = [...itensCheckout, alreadyExists];
+        return setItensCheckout(itensCheckoutCopy);
       } else {
         newItem.qty = 1;
-        itensCheckoutCopy = [...itensCheckoutCopy, newItem];
-      }
-      setItensCheckout(itensCheckoutCopy);
+        itensCheckoutCopy.push(newItem)
+        return setItensCheckout(itensCheckoutCopy);
+      } 
     } catch (error) {
       console.log('Erro ao adicionar o item no carrinho');
     }
@@ -115,8 +157,9 @@ export const StoreProvider = ({children}: StoreProviderProps) => {
         allItemsFromStore,
         istanceOfAllItems,
         getItemsFromStore,
-        filterInstaceOfAllItemsBySection,
+        filterInstanceOfAllItemsBySection,
         addItem,
+        itemsBySection
       }}>
       {children}
     </StoreContext.Provider>
