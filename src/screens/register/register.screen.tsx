@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {View, TextInput, SafeAreaView, Alert, Text} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, SafeAreaView, Alert, Text } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '../../services/axios';
-import {validateEmail} from '../../services/validations/emailValidator';
-import {useNavigation} from '@react-navigation/native';
-import {useUser} from '../../contexts/user.context';
+import { validateEmail } from '../../services/validations/emailValidator';
+import { useNavigation } from '@react-navigation/native';
+import { useUser } from '../../contexts/user.context';
 
-import {PRIMARY, WHITE_50} from '../../identity';
+import { PRIMARY, WHITE_50 } from '../../identity';
 import Button from '../components/Button';
 
 interface SignInFormData {
@@ -20,11 +20,11 @@ interface ISignInProps {
   hideGoToStoreButton?: boolean;
 }
 
-import {LoginStyle} from '../login/login.style';
+import { LoginStyle } from '../login/login.style';
 
 const Register: React.FC<ISignInProps> = () => {
   const navigation = useNavigation();
-  const {credentials, refreshCredentials} = useUser();
+  const { credentials, refreshCredentials } = useUser();
   //Fazer logica pra ver se há usuario e redirecionar para outra pagina
 
   const [email, setEmail] = useState('');
@@ -35,13 +35,13 @@ const Register: React.FC<ISignInProps> = () => {
   const [inputPasswordFocus, setPasswordFocus] = useState(false);
   const [inputConfirmPasswordFocus, setConfirmPasswordFocus] = useState(false);
   const inputColors = [
-    {width: 300, height: 40, borderWidth: 1, borderColor: WHITE_50},
-    {width: 300, height: 40, borderWidth: 1, borderColor: PRIMARY},
+    { width: 300, height: 40, borderWidth: 1, borderColor: WHITE_50 },
+    { width: 300, height: 40, borderWidth: 1, borderColor: PRIMARY },
   ];
 
   useEffect(() => {
     if (credentials.userId) {
-      navigation.goBack();
+      navigation.navigate('Orders', {});
     }
   }, [navigation, credentials.userId]);
 
@@ -142,7 +142,7 @@ const Register: React.FC<ISignInProps> = () => {
       Alert.alert('As senhas não coincidem!');
     }
     try {
-      const response = await api.post('/native/', {
+      const response = await api.post('/api/native/', {
         email: email,
         password: password,
         password_confirmation: password,
@@ -175,7 +175,7 @@ const Register: React.FC<ISignInProps> = () => {
       console.log(errMsg);
       return;
     } finally {
-      navigation.navigate('AccountTab');
+      navigation.navigate('AccountTab', {});
     }
   };
 

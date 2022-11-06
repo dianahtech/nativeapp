@@ -1,3 +1,15 @@
+export interface userOrder {
+  id: string;
+  store_user_id: string;
+  native_user_id: string;
+  status: string;
+  items: ItensCheckoutType[];
+  created_at: string;
+  final_value: string;
+  payment_mode: string;
+}
+
+
 export type Product = {
   name: string;
   durl: string;
@@ -41,10 +53,10 @@ export interface OrderType {
   id?: string;
   native_user_id: string;
   store_id: string;
-  items:  ItensCheckoutType[];
+  items: ItensCheckoutType[];
   status: string;
   delivery_mode: any;
-  final_value:any;
+  final_value: any;
   payment_mode: any;
-  
+
 }

@@ -1,45 +1,41 @@
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import {
   BLACK,
   FONT_FAMILY_REGULAR,
   FONT_SIZE_X_SMALL,
   PRIMARYDARKER,
   WHITE,
-  WHITE_30,
+
   WHITE_80,
 } from '../../../identity';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { userOrder } from '../../../@types';
 
-interface GenericCartProps {
-  id: string;
-  store_id: string;
-  status: string;
-  products: string;
-  date: string;
-  final_value: string;
-}
 
-const OrderCard: React.FC<GenericCartProps> = ({
-  store_id,
-  products,
+const OrderCard: React.FC<userOrder> = ({
+  store_user_id,
+  items,
   status,
   id,
-  date,
+  created_at,
   final_value,
 }) => {
   return (
     <View style={orderCardStyle.cardContainer}>
       <View style={orderCardStyle.cardHeaderContainer}>
-        <Text>{store_id || 'CARDHEADER'}</Text>
-        <Text>{status}</Text>
+        <Text>{store_user_id || 'CARDHEADER'}</Text>
+        <Text>{status || 'Status'}</Text>
       </View>
 
       <View style={orderCardStyle.lineDivider} />
-      <Text style={orderCardStyle.cardCodeText}>{id}</Text>
+      <Text style={orderCardStyle.cardCodeText}>{id ? id : 123}</Text>
 
       <View style={orderCardStyle.cartContentContainer}>
         <View style={orderCardStyle.products}>
-          <Text> {products || 'ESTE È O CART CONTENT'}</Text>
+
+          <Text>ESTE È O CART CONTENT'</Text>
+
+
         </View>
         <View style={orderCardStyle.prices}>
           <Text> {'R$: 25,00'}</Text>
@@ -49,10 +45,10 @@ const OrderCard: React.FC<GenericCartProps> = ({
       <View style={orderCardStyle.lineDivider} />
 
       <View style={orderCardStyle.cardBottomContainer}>
-        <Text>{date}</Text>
+        <Text>{created_at}</Text>
         <Text>{final_value}</Text>
       </View>
-    </View>
+    </View >
   );
 };
 
@@ -100,6 +96,6 @@ const orderCardStyle = StyleSheet.create({
     height: 50,
     padding: 0,
   },
-  products: {flex: 3, padding: 5},
-  prices: {flex: 1},
+  products: { flex: 3, padding: 5 },
+  prices: { flex: 1 },
 });

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, TextInput, SafeAreaView, Alert, Image} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, SafeAreaView, Alert, Image } from 'react-native';
 /* import {
   LoginManager,
   AccessToken,
@@ -10,11 +10,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 //import Loader from '../loader/loader.screen';
 import api from '../../services/axios';
-import {validateEmail} from '../../services/validations/emailValidator';
-import {useNavigation} from '@react-navigation/native';
-import {useUser} from '../../contexts/user.context';
+import { validateEmail } from '../../services/validations/emailValidator';
+import { useNavigation } from '@react-navigation/native';
+import { useUser } from '../../contexts/user.context';
 
-import {PRIMARY, WHITE_50} from '../../identity';
+import { PRIMARY, WHITE_50 } from '../../identity';
 import Button from '../components/Button';
 
 interface SignInFormData {
@@ -26,12 +26,12 @@ interface ISignInProps {
   hideGoToStoreButton?: boolean;
 }
 
-import {LoginStyle} from './login.style';
+import { LoginStyle } from './login.style';
 
 const LogIn: React.FC<ISignInProps> = () => {
   const storeIcon = require('../../../android/app/src/main/res/drawable/icon.png');
   const navigation = useNavigation();
-  const {credentials, refreshCredentials} = useUser();
+  const { credentials, refreshCredentials } = useUser();
   //Fazer logica pra ver se há usuario e redirecionar para outra pagina
 
   const [email, setEmail] = useState('');
@@ -40,8 +40,8 @@ const LogIn: React.FC<ISignInProps> = () => {
   const [inputEmailFocus, setEmailFocus] = useState(false);
   const [inputPasswordFocus, setPasswordFocus] = useState(false);
   const inputColors = [
-    {width: 300, height: 40, borderWidth: 1, borderColor: WHITE_50},
-    {width: 300, height: 40, borderWidth: 1, borderColor: PRIMARY},
+    { width: 300, height: 40, borderWidth: 1, borderColor: WHITE_50 },
+    { width: 300, height: 40, borderWidth: 1, borderColor: PRIMARY },
   ];
 
   useEffect(() => {
@@ -147,7 +147,7 @@ const LogIn: React.FC<ISignInProps> = () => {
 
     try {
       /*     console.log(`Este é o valor do email: ${email}`); */
-      const response = await api.post('/native/sign_in', {
+      const response = await api.post('api/native/sign_in', {
         email: email,
         password: password,
       });
@@ -174,7 +174,7 @@ const LogIn: React.FC<ISignInProps> = () => {
             userId: sessionCredentials.id,
             tokenId: sessionCredentials.uid,
             refreshToken: sessionCredentials.uid,
-            oneSignalPLayerId: sessionCredentials,
+            oneSignalPLayerId: sessionCredentials.uid,
           },
         });
       }
@@ -201,7 +201,7 @@ const LogIn: React.FC<ISignInProps> = () => {
         <Image
           source={storeIcon}
           resizeMode="stretch"
-          style={{height: 100, width: 100, marginBottom: 10}}
+          style={{ height: 100, width: 100, marginBottom: 10 }}
         />
         <TextInput
           autoCorrect={false}
@@ -232,7 +232,7 @@ const LogIn: React.FC<ISignInProps> = () => {
           type="button-block"
         />
 
-        <Button text="Entrar com facebook" onPress={() => {}} type="fb" />
+        <Button text="Entrar com facebook" onPress={() => { }} type="fb" />
 
         <Button
           text="Criar Conta"

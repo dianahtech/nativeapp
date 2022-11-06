@@ -28,12 +28,14 @@ const FinishPage: React.FC = () => {
   const sendFinalOrder = useCallback(async () => {
     try {
       const convertedItem = await convertItemsToApp(itensCheckout)
-      api.post('ordered_item', {
-        final_value: '00,00',
-        status: 'Enviado',
-        native_user_id: 1,
-        stored_id: 1,
-        items: convertedItem
+      api.post('/api/orders', {
+        ordered_items: {
+          final_value: '00,00',
+          status: 'Enviado',
+          native_user_id: 1,
+          store_user_id: 1,
+          items: convertedItem
+        }
       });
     } catch (error) {
     } finally {

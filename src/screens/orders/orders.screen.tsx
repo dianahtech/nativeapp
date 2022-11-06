@@ -1,47 +1,19 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {Text, View, StyleSheet, ScrollView, FlatList} from 'react-native';
-import {useUser} from '../../contexts/user.context';
-import {FONT_SIZE_LARGE} from '../../identity';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Text, View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { ItensCheckoutType, userOrder } from '../../@types';
+import { useUser } from '../../contexts/user.context';
+import { FONT_SIZE_LARGE } from '../../identity';
 import api from '../../services/axios';
 import OrderCard from './components/orderCard.component';
 
-export interface userOrder {
-  id: string;
-  store_id: string;
-  status: string;
-  products: string;
-  date: string;
-  final_value: string;
-}
-
 export const OrdersScreen = () => {
-  const {credentials} = useUser();
-
-  const ordersHistory: userOrder[] = [
-    {
-      store_id: 'Alder',
-      products: '2 - X-FILE BACON',
-      id: '7897894561',
-      status: 'Finalizado',
-      date: '29/10/2022',
-      final_value: 'R$:123,56',
-    },
-    {
-      store_id: 'Alder',
-      products: '2 - X-FILE BACON',
-      id: '7897894789561',
-      status: 'Finalizado',
-      date: '29/10/2022',
-      final_value: 'R$:123,56',
-    },
-  ];
-
-  const [ordersHistoryApi, setOrdersHistoryApi] = useState();
+  const { credentials } = useUser();
+  const [ordersHistoryApi, setOrdersHistoryApi] = useState<userOrder[]>();
 
   useMemo(() => {
     if (credentials.userId) {
       api
-        .get(`/ordered_item/${credentials.userId}`)
+        .get(`/api/orders/${credentials?.userId || 1}`)
         .then(response => {
           const productsLists = response.data.data;
           if (productsLists) {
@@ -50,7 +22,7 @@ export const OrdersScreen = () => {
           } else {
           }
         })
-        .catch(err => {});
+        .catch(err => { });
     }
   }, [credentials.userId]);
 
@@ -62,7 +34,7 @@ export const OrdersScreen = () => {
           <FlatList
             numColumns={1}
             data={ordersHistoryApi}
-            renderItem={({item}) => <OrderCard {...item} />}
+            renderItem={({ item }) => <OrderCard {...item} />}
             keyExtractor={item => item.id}
           />
         </View>
@@ -81,6 +53,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: FONT_SIZE_LARGE,
     fontWeight: 'bold',
+    textAlign: 'center',
+    padding: 25
   },
   noUserView: {
     flex: 1,
@@ -88,10 +62,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   flatListView: {
-    width: '80%',
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 24,
+    width: '90%',
+    marginHorizontal: 15,
     alignItems: 'center',
   },
 });

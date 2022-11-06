@@ -1,20 +1,21 @@
-import React, {useCallback, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   BLACK_50,
   FONT_FAMILY_REGULAR,
+  FONT_SIZE_LARGE,
   FONT_SIZE_MEDIUM,
   FONT_SIZE_SMALL,
   FONT_SIZE_X_SMALL,
   PRIMARY,
   PRIMARYDARKER,
 } from '../../identity';
-import {useUser} from '../../contexts/user.context';
+import { useUser } from '../../contexts/user.context';
 
 export const AccountScreen = () => {
-  const {refreshCredentials} = useUser();
+  const { credentials, refreshCredentials } = useUser();
   const navigation = useNavigation();
 
   const [accountSections] = useState([
@@ -65,13 +66,13 @@ export const AccountScreen = () => {
 
   const handleNavigate = useCallback(
     (page: string) => {
-      navigation.navigate(page, {data: ''});
+      navigation.navigate(page, { data: '' });
     },
     [navigation],
   );
 
   const renderSections = useCallback(
-    ({title, items}) => {
+    ({ title, items }) => {
       if (title === 'Sair') {
         return (
           <View>
@@ -108,7 +109,7 @@ export const AccountScreen = () => {
     [handleNavigate, navigation, refreshCredentials],
   );
 
-  const renderItem = useCallback(({item}) => {
+  const renderItem = useCallback(({ item }) => {
     return (
       <View>
         {item.title !== 'Sair' && (
@@ -124,6 +125,7 @@ export const AccountScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.welcomeText}>Bem vindo, {credentials.userId}</Text>
       <FlatList
         keyExtractor={(item: any) => item.title}
         data={accountSections}
@@ -172,4 +174,11 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZE_SMALL,
     color: BLACK_50,
   },
+  welcomeText: {
+    fontSize: FONT_SIZE_LARGE,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: 15,
+    flexDirection: 'row',
+  }
 });
